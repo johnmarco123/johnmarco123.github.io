@@ -1,22 +1,5 @@
 import * as THREE from 'three';
 import { Mesh } from 'three'
-//this code breaks the website for some reason but should figure out why
-// import WebGL from 'three/addons/capabilities/WebGL.js';
-
-// // Check if the clients device supports WebGL
-// if ( WebGL.isWebGLAvailable() ) {
-
-// 	// Initiate function or other initializations here
-// 	animate();
-
-// } else {
-
-// 	const warning = WebGL.getWebGLErrorMessage();
-// 	document.getElementById( 'container' ).appendChild( warning );
-
-// }
-
-
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
