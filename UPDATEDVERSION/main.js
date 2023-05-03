@@ -6,10 +6,10 @@ const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.inner
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+document.getElementById("fade").appendChild( renderer.domElement );
 
 // HELPER FUNCTIONS
-const { PI } = Math
+const { PI, abs } = Math
 
 //adds an array of items to a scene
 const addToScene = arr => arr.forEach(e => scene.add(e))
@@ -38,6 +38,38 @@ const pos = (item, ...args) => {
 	return item
 }
 
+const diff = (a, b) => Math.abs(a - b);
+
+
+const makeAnimation = (camera, ...args) => {
+	if(args.length + 1 != 8){console.error("makeAnimation requires 8 arguments")}
+	let [endX, endY, endZ, rotX, rotY, rotZ, spd] = [...args]
+	let rotSpd = 0.001
+	let xSpd, ySpd, zSpd, xRotSpd, yRotSpd, zRotSpd;
+	xSpd = ySpd = zSpd = spd
+	xRotSpd = yRotSpd = zRotSpd = rotSpd
+	if(camera.position.x > endX)xSpd = -abs(xSpd)
+	if(camera.position.y > endY)ySpd = -abs(ySpd)
+	if(camera.position.z > endZ)zSpd = -abs(zSpd)
+	if(camera.rotation.x > rotX)xRotSpd = -abs(xRotSpd)
+	if(camera.rotation.y > rotY)yRotSpd = -abs(yRotSpd)
+	if(camera.rotation.z > rotZ)zRotSpd = -abs(zRotSpd)
+	const STOPAMT = 0.01
+	const newAnimation = () => {
+		//animation stop condition
+		if(diff(camera.position.y, endY) < STOPAMT && diff(camera.position.x, endX) < STOPAMT && diff(camera.position.z, endZ) < STOPAMT){
+			return true
+		}
+		if(diff(camera.position.x, endX) > STOPAMT){camera.position.x += xSpd}
+		if(diff(camera.position.y, endY) > STOPAMT){camera.position.y += ySpd}
+		if(diff(camera.position.z, endZ) > STOPAMT){camera.position.z += zSpd}
+		if(diff(camera.rotation.x, rotX) > 0.00001){camera.rotation.x += xRotSpd}
+		if(diff(camera.rotation.y, rotY) > 0.00001){camera.rotation.y += yRotSpd}
+		if(diff(camera.rotation.z, rotZ) > 0.00001){camera.rotation.z += zRotSpd}
+	}
+	return newAnimation
+}
+
 //HELPER FUNCTION END
 
 
@@ -64,7 +96,7 @@ const room = [
 	pos(new Mesh(geo('plane', 10, 10),basicMaterial( {color: "rgb(135, 206, 235)", side: THREE.DoubleSide})),0, 5.1, 0, PI/2, 0, 0),
 ]
 
-const table = [
+const desk = [
 	//keyboard stand
 	pos((new Mesh(geo('box', 1.8, 1, 0.1), basicMaterial({color: "rgb(170,140,100)"}))), 1, 2.5, 1, PI/15, 0, 0),
 
@@ -98,16 +130,17 @@ const table = [
 
 	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), 3.8, 3.2, 0.8),
 ]
+desk.forEach(t => t.class = 'desk')
 const monitor = [
 	//screen
-	pos((new Mesh(geo('box', 1, 0.6, 0.1), basicMaterial({color: "rgb(40, 40, 40)"}))), 0.4, 3.35, 2, PI/2, 0, 0),
-	pos((new Mesh(geo('box', 0.9, 0.5, 0.1), basicMaterial({color: "rgb(255, 255, 255)"}))), 0.4, 3.3499, 2, PI/2, 0, 0),
+	pos((new Mesh(geo('box', 1.4, 0.6, 0.1), basicMaterial({color: "rgb(40, 40, 40)"}))), 0.2, 3.35, 2, PI/2, PI/10, 0),
+	pos((new Mesh(geo('box', 1.3, 0.5, 0.1), basicMaterial({color: "rgb(255, 255, 255)"}))), 0.2, 3.3499, 2, PI/2, PI/10, 0),
 	//back support
-	pos((new Mesh(geo('box', 0.2, 0.6, 0.1), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.45, 3.38, 1.8, PI/2, 0, 0),
+	pos((new Mesh(geo('box', 0.2, 0.6, 0.1), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.25, 3.38, 1.8, PI/2, PI/10, 0),
 
 	//legs
-	pos((new Mesh(geo('box', 0.05, 0.4, 0.06), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.65, 3.1, 1.6, 0, 0, PI/5),
-	pos((new Mesh(geo('box', 0.05, 0.4, 0.06), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.30, 3.1, 1.6, 0, 0, -PI/5),
+	pos((new Mesh(geo('box', 0.05, 0.4, 0.06), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.40, 3.15, 1.6, 0, 0, PI/5),
+	pos((new Mesh(geo('box', 0.05, 0.4, 0.06), basicMaterial({color: "rgb(0, 0, 0)"}))), 0.10, 3.15, 1.6, 0, 0, -PI/5),
 ]
 monitor[1].name = 'monitor'
 const laptop = [
@@ -124,11 +157,11 @@ const keyBoard = [
 ]
 
 const curve = new THREE.EllipseCurve(
-		0,  0,            // ax, aY
-		10, 10,           // xRadius, yRadius
-		0,  2 * Math.PI,  // aStartAngle, aEndAngle
-		false,            // aClockwise
-		0                 // aRotation
+	0,  0,            // ax, aY
+	10, 10,           // xRadius, yRadius
+	0,  2 * Math.PI,  // aStartAngle, aEndAngle
+	false,            // aClockwise
+	0                 // aRotation
 );
 
 const points = curve.getPoints( 50 );
@@ -146,7 +179,7 @@ addToScene(keyBoard)
 addToScene(room)
 addToScene(monitor)
 addToScene(laptop)
-addToScene(table)
+addToScene(desk)
 
 pos(camera, 1, 1, 2, PI/2, 0, 0)
 
@@ -155,7 +188,6 @@ const pointer = new THREE.Vector2();
 
 
 function render() {
-
 	// update the picking ray with the camera and pointer position
 	raycaster.setFromCamera( pointer, camera );
 
@@ -163,22 +195,23 @@ function render() {
 	const clicked = raycaster.intersectObjects( scene.children )[0];
 	//intersects gets ALL OBJECTS IT INTERSECTS
 	//so we pick just one
-	
+
 
 	//DEV TESTING ONLY, COLORS CLICKED OBJECT
 	//intersects[0].object.material.color.set( 0xff0000 );
 	let url = window.location.href
-	if(clicked.object.name == 'monitor'){
-		url += 'p5Projects'
+	if(clicked.object.class == 'desk'){
+		deskClicked = true
+	} else if(clicked.object.name == 'monitor'){
+		monitorClicked = true
+		// window.location.href = url += 'p5Projects'
 	} else if (clicked.object.name == 'laptop') {
-		url += 'mathChalkBoard'
+		// window.location.href = url += 'mathChalkBoard'
 	}
-	window.location.href = url
 	renderer.render( scene, camera );
 
 }
 function click( event ) {
-	console.log(camera)
 	// calculate pointer position in normalized device coordinates
 	// (-1 to +1) for both components
 	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
@@ -188,12 +221,49 @@ function click( event ) {
 window.addEventListener( 'click', click );
 
 window.addEventListener("keydown", e => {
-	if(e.key == 'ArrowUp') camera.rotation.x += 0.02
-	if(e.key == 'ArrowDown') camera.rotation.x -= 0.02
+	if(e.key == 'ArrowUp') camera.position.y += 0.2
+	if(e.key == 'ArrowDown') camera.position.y -= 0.2
+	if(e.key == 'ArrowLeft') camera.rotation.y += 0.2
+	if(e.key == 'ArrowRight') camera.rotation.y -= 0.2
 })
+
+//OUR ANIMATIONS
+//STARTER COORDS
+let camRotation = [camera.rotation.x, camera.rotation.y, camera.rotation.z]
+let camPosition = camera.position
+
+let deskClicked, atDesk = false;
+let walkToDeskAnimation = makeAnimation(camera, 1,1,2,...camRotation, 0.005)
+
+let monitorClicked, atMonitor = false
+let monitorAnimation = makeAnimation(camera, 0.5,2.8,2,camRotation[0], camRotation[1] + 0.4, camRotation[2], 0.005)
+
+const locations = [atDesk, atMonitor]
+
+//1, 1, 2 is at desk
+camera.position.y = -2
+
+document.getElementById('fade').style.opacity = '1.0'
+function fade(){
+	let amt = Number(document.getElementById('fade').style.opacity)
+	document.getElementById('fade').style.opacity = (amt - 0.01).toString()
+}
 
 function animate() {
 	requestAnimationFrame( animate );
+	if(deskClicked && !atDesk){
+		if(walkToDeskAnimation()){
+			atDesk = true;
+			deskClicked = false
+		}
+	} else if ( monitorClicked ) {
+		if(monitorAnimation() && !atMonitor){
+			atMonitor = true
+			monitorClicked = false
+		} else if (atMonitor){
+			fade()
+		}
+	}
 	// ANIMATION CODE STARTS HERE
 	// cube.rotation.x += 0.01;
 	// cube.rotation.y += 0.01;
