@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background: #444;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    background: #444;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+nav a:hover {
+    color: #f33;
+    transition: 0.2s;
+}
+
+iframe {
+    border-radius : 10px;
+    width: 80%;
+    height: 600px;
+    text-align: center;
+    margin: 0 auto;
+    border-width: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#show-case {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

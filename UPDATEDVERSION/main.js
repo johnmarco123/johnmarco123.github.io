@@ -98,10 +98,12 @@ const room = [
 
 const desk = [
 	//keyboard stand
-	pos((new Mesh(geo('box', 1.8, 1, 0.1), basicMaterial({color: "rgb(170,140,100)"}))), 1, 2.5, 1, PI/15, 0, 0),
+  	pos((new Mesh(geo('box', 1.8, 1, 0.1), basicMaterial({color: "rgb(170,140,100)"}))), 1, 2.5, 1, PI/15, 0, 0),
 
-	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), -0.05, 3.2, 1),
-	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), 2.05, 3.2, 1),
+  	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), -0.05, 3.2, 1),
+    // THESE ARE THE ONES
+	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), 2.05, 3.3, 1),
+	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), 3.8, 3.3, 0.8),
 
 	pos((new Mesh(geo('box', 4, 1, 0.1), basicMaterial({color: "rgb(184,155,113)"}))), 1.9, 3.2, 1.2),
 
@@ -119,16 +121,15 @@ const desk = [
 
 	pos((new Mesh(geo('box', 2.9, 1, 0.1), basicMaterial({color: "rgb(184,155,113)"}))), 2.4, 3.7, 1.5),
 
-	pos((new Mesh(geo('box', 0.1, 0.2, 1), basicMaterial({color: "rgb(160,130,90)"}))),3.2, 3.31, 2),
-	pos((new Mesh(geo('box', 0.1, 0.2, 1), basicMaterial({color: "rgb(160,130,90)"}))),1.7, 3.31, 2),
-
-	pos((new Mesh(geo('box',1.5, 1, 0.07), basicMaterial({color: "rgb(184,155,113)"}))), 2.45, 3.75, 2.25),
-	pos((new Mesh(geo('box', 1.5, 1, 0.07), basicMaterial({color: "rgb(184,155,113)"}))), 2.45, 3.75, 2),
-
-	pos((new Mesh(geo('box', 1.9, 1.3, 0.1), basicMaterial({color: "rgb(184, 155, 113)"}))), 3, 2.75, 0.58, PI/2, 0, 0),
+  	pos((new Mesh(geo('box', 0.1, 0.2, 1), basicMaterial({color: "rgb(160,130,90)"}))),3.2, 3.31, 2),
+  	pos((new Mesh(geo('box', 0.1, 0.2, 1), basicMaterial({color: "rgb(160,130,90)"}))),1.7, 3.31, 2),
+  
+  	pos((new Mesh(geo('box',1.5, 1, 0.07), basicMaterial({color: "rgb(184,155,113)"}))), 2.45, 3.75, 2.25),
+  	pos((new Mesh(geo('box', 1.5, 1, 0.07), basicMaterial({color: "rgb(184,155,113)"}))), 2.45, 3.75, 2),
+  
+  	pos((new Mesh(geo('box', 1.9, 1.3, 0.1), basicMaterial({color: "rgb(184, 155, 113)"}))), 3, 2.75, 0.58, PI/2, 0, 0),
 	pos((new Mesh(geo('box', 1.9, 0.2, 0.1), basicMaterial({color: "rgb(160, 130, 90)"}))), 3, 2.74, 1.05, PI/2, 0, 0),
 
-	pos((new Mesh(geo('box', 0.1, 1, 0.49), basicMaterial({color: "rgb(160,130,90)"}))), 3.8, 3.2, 0.8),
 ]
 desk.forEach(t => t.class = 'desk')
 const monitor = [
@@ -272,6 +273,3 @@ function animate() {
 
 }
 animate();
-
-
-
