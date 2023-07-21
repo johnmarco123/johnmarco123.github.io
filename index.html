@@ -7,23 +7,105 @@
     <link rel="stylesheet" href="style.css">
     <body>
         <nav>
-            <a href="VeterinaryAdventures">Vet Game</a>
-            <a href="Philosophy-website">Philosophy website</a>
-            <a href="studying">Study flashcards</a>
-            <a href="mathChalkBoard">Math chalk board</a>
-            <a href="p5Projects">Projects made in p5.js</a>
+            <a id="VeterinaryAdventures" href="VeterinaryAdventures">Vet Game</a>
+            <a id="Philosophy-website" href="Philosophy-website">Philosophy website</a>
+            <a id="studying" href="studying">Study flashcards</a>
+            <a id="mathChalkBoard" href="mathChalkBoard">Math chalk board</a>
+            <a id="p5Projects" href="p5Projects">Projects made in p5.js</a>
                 </nav>
         <div id="show-case">
             <iframe src="Philosophy-website" title="My projects" id="frame"></iframe>
         </div>
     </body>
     <script>
-        let list = [
+        const list = [
             "VeterinaryAdventures",
             "Philosophy-website",
             "studying",
             "mathChalkBoard",
             "p5Projects"
         ];
+
+        for (let item of list) {
+            document.getElementById(item).addEventListener("mouseover", () => {
+                hovered = item;
+                if (!swapping) {
+                    swapping = true;
+                    swap(hovered);
+                }
+            });
+        }
+
+        let frame = document.getElementById("frame");
+        frame.style.opacity = 1; 
+        let hovered = undefined;
+        let index = 0;
+        let fading_in_timer, fading_out_timer, idle_timer;
+        const fade_time = 800;
+        let swapping = false;
+
+
+        function swap(item) {
+            clearTimeout(idle_timer);
+            clearTimeout(fading_out_timer);
+            clearTimeout(fading_in_timer);
+            fade_out(frame);
+        }
+
+        function fade_in(el) {
+            const spd = 10 / fade_time;
+            fading_in = setInterval(() => {
+                if (el.style.opacity >= 1) {
+                    swapping = false;
+                    clearTimeout(fading_in);
+                }
+                    el.style.opacity = String(Number(el.style.opacity) + spd);
+            }, 10);
+        }
+
+        function check_idle(el) {
+            const idle_time_required = 4000;
+            idle_timer = setTimeout(() => {
+                fade_out(el);
+            }, idle_time_required)
+        }
+
+
+        function fade_out(el) {
+            const spd = 10 / fade_time;
+            fading_out_timer = setInterval(() => {
+                if (el.style.opacity <= 0) {
+                    index++
+                    if (hovered) {
+                        index = list.indexOf(hovered);
+                        hovered = undefined;
+                    } else if (index >= list.length) {
+                        index = 0;
+                    }
+                    el.src = list[index];
+                    clearTimeout(fading_out_timer);
+                    setTimeout(() => {
+                        fade_in(el);
+                    }, 300);
+                }
+                el.style.opacity = String(Number(el.style.opacity) - spd);
+            }, 10);
+
+        }
+        //fade_out(frame, 1000);
+
+        //frame.addEventListener("mouseenter", () => {
+        //    clearTimeout(idle_timer);
+        //    clearTimeout(fading_out_timer);
+        //    fade_in(frame, 1000);
+        //});
+
+        //frame.addEventListener("mouseout", () => {
+        //    clearTimeout(fading_in_timer);
+        //    check_idle(frame);
+        //});
+
+
+
     </script>
 </html>
