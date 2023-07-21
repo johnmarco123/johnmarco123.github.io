@@ -19,11 +19,11 @@
     </body>
     <script>
         const list = [
+            "p5Projects",
             "VeterinaryAdventures",
             "Philosophy-website",
             "studying",
             "mathChalkBoard",
-            "p5Projects"
         ];
 
         for (let item of list) {
@@ -40,13 +40,12 @@
         frame.style.opacity = 1; 
         let hovered = undefined;
         let index = 0;
-        let fading_in_timer, fading_out_timer, idle_timer;
+        let fading_in_timer, fading_out_timer;
         const fade_time = 800;
         let swapping = false;
 
 
         function swap(item) {
-            clearTimeout(idle_timer);
             clearTimeout(fading_out_timer);
             clearTimeout(fading_in_timer);
             fade_out(frame);
@@ -62,14 +61,6 @@
                     el.style.opacity = String(Number(el.style.opacity) + spd);
             }, 10);
         }
-
-        function check_idle(el) {
-            const idle_time_required = 4000;
-            idle_timer = setTimeout(() => {
-                fade_out(el);
-            }, idle_time_required)
-        }
-
 
         function fade_out(el) {
             const spd = 10 / fade_time;
@@ -92,20 +83,5 @@
             }, 10);
 
         }
-        //fade_out(frame, 1000);
-
-        //frame.addEventListener("mouseenter", () => {
-        //    clearTimeout(idle_timer);
-        //    clearTimeout(fading_out_timer);
-        //    fade_in(frame, 1000);
-        //});
-
-        //frame.addEventListener("mouseout", () => {
-        //    clearTimeout(fading_in_timer);
-        //    check_idle(frame);
-        //});
-
-
-
     </script>
 </html>
