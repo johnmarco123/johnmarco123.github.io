@@ -15,27 +15,18 @@
             <a id="p5Projects" href="p5Projects">Projects made in p5.js</a>
                 </nav>
         <div id="show-case">
-            <iframe src="Philosophy-website" title="My projects" id="frame"></iframe>
+            <iframe src="p5Projects" title="My projects" id="frame"></iframe>
         </div>
     </body>
     <script>
         const list = [
-            "p5Projects",
             "VeterinaryAdventures",
             "Philosophy-website",
             "studying",
             "mathChalkBoard",
+            "p5Projects",
         ];
 
-        for (let item of list) {
-            document.getElementById(item).addEventListener("mouseover", () => {
-                hovered = item;
-                if (!swapping) {
-                    swapping = true;
-                    swap(hovered);
-                }
-            });
-        }
 
         let frame = document.getElementById("frame");
         frame.style.opacity = 1; 
@@ -45,6 +36,15 @@
         const fade_time = 800;
         let swapping = false;
 
+        for (let item of list) {
+            document.getElementById(item).addEventListener("mouseover", () => {
+                hovered = item;
+                if (frame.src.split("/").pop() != item && !swapping) {
+                    swapping = true;
+                    swap(item);
+                }
+            });
+        }
 
         function swap(item) {
             clearTimeout(fading_out_timer);
