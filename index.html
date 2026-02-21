@@ -8,124 +8,73 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="grain"></div>
-
         <header>
-            <div class="header-content">
-                <div class="logo">JM</div>
-                <nav class="header-nav">
-                    <a href="https://github.com/johnmarco123" target="_blank" rel="noopener">GitHub</a>
-                </nav>
+            <div class="brand">
+                <span class="brand-name">John-Marco</span>
+                <span class="brand-dot"></span>
             </div>
+            <nav>
+                <a id="p5Projects" href="p5Projects" class="active">p5.js Projects</a>
+                <a id="VeterinaryAdventures" href="VeterinaryAdventures">Vet Game</a>
+                <a id="Philosophy-website" href="Philosophy-website">Philosophy</a>
+                <a id="drawing_app" href="drawing_app">Drawing App</a>
+                <a id="snooker" href="snooker">Snooker</a>
+            </nav>
         </header>
-
-        <section class="hero">
-            <p class="hero-greeting">Hi, I'm</p>
-            <h1 class="hero-name">John-Marco</h1>
-            <p class="hero-tagline">Developer &amp; Creator</p>
-            <div class="scroll-hint">
-                <span>Explore my work</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
-                </svg>
+        <main>
+            <div class="showcase-bar">
+                <span id="current-project">p5Projects</span>
+                <a id="visit-btn" href="p5Projects" target="_blank" rel="noopener" class="visit-btn">
+                    Visit Website
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </a>
             </div>
-        </section>
-
-        <section class="projects">
-            <h2 class="section-title">Projects</h2>
-
-            <div class="project-nav">
-                <button class="project-card active" data-project="p5Projects">
-                    <span class="card-icon">&#9670;</span>
-                    <span class="card-label">p5.js Projects</span>
-                    <span class="card-tech">JavaScript, p5.js</span>
-                </button>
-                <button class="project-card" data-project="VeterinaryAdventures">
-                    <span class="card-icon">&#9672;</span>
-                    <span class="card-label">Vet Game</span>
-                    <span class="card-tech">Game Development</span>
-                </button>
-                <button class="project-card" data-project="Philosophy-website">
-                    <span class="card-icon">&#9673;</span>
-                    <span class="card-label">Philosophy Website</span>
-                    <span class="card-tech">Web Design</span>
-                </button>
-                <button class="project-card" data-project="drawing_app">
-                    <span class="card-icon">&#9998;</span>
-                    <span class="card-label">Drawing App</span>
-                    <span class="card-tech">Canvas, JavaScript</span>
-                </button>
-                <button class="project-card" data-project="snooker">
-                    <span class="card-icon">&#9679;</span>
-                    <span class="card-label">Snooker Game</span>
-                    <span class="card-tech">Physics, Game Dev</span>
-                </button>
+            <div id="show-case">
+                <iframe src="p5Projects" title="My projects" id="frame"></iframe>
             </div>
-
-            <div class="showcase">
-                <div class="showcase-frame">
-                    <div class="showcase-bar">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                        <span class="showcase-url" id="showcase-url">p5Projects</span>
-                    </div>
-                    <iframe src="p5Projects" title="Project preview" id="frame"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 John-Marco. Built with passion.</p>
-        </footer>
+        </main>
     </body>
     <script>
-        const cards = document.querySelectorAll(".project-card");
-        const projects = [];
-        cards.forEach(card => projects.push(card.dataset.project));
+        const aTags = document.querySelectorAll("nav a");
+        const list = [];
+        aTags.forEach(tag => list.push(tag.id));
 
         const frame = document.getElementById("frame");
-        const showcaseUrl = document.getElementById("showcase-url");
-        frame.style.opacity = 1;
+        const visitBtn = document.getElementById("visit-btn");
+        const currentProject = document.getElementById("current-project");
 
+        frame.style.opacity = 1;
         let hovered = undefined;
         let index = 0;
         let fading_in_timer, fading_out_timer;
         const fade_time = 800;
         let swapping = false;
 
-        function setActiveCard(projectName) {
-            cards.forEach(c => c.classList.remove("active"));
-            cards.forEach(c => {
-                if (c.dataset.project === projectName) c.classList.add("active");
-            });
-            showcaseUrl.textContent = projectName;
+        function setActive(id) {
+            aTags.forEach(a => a.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+            visitBtn.href = id;
+            currentProject.textContent = id;
         }
 
-        cards.forEach(card => {
-            card.addEventListener("mouseover", () => {
-                const project = card.dataset.project;
-                hovered = project;
-                if (frame.src.split("/").pop() !== project && !swapping) {
+        for (let item of list) {
+            document.getElementById(item).addEventListener("click", (e) => {
+                e.preventDefault();
+                hovered = item;
+                if (frame.src.split("/").pop() != item && !swapping) {
                     swapping = true;
-                    setActiveCard(project);
-                    swap(project);
+                    setActive(item);
+                    swap(item);
                 }
             });
-
-            card.addEventListener("click", () => {
-                const project = card.dataset.project;
-                hovered = project;
-                if (frame.src.split("/").pop() !== project && !swapping) {
-                    swapping = true;
-                    setActiveCard(project);
-                    swap(project);
-                }
-            });
-        });
+        }
 
         function swap(item) {
             clearInterval(fading_out_timer);
@@ -150,12 +99,12 @@
                 if (el.style.opacity <= 0) {
                     index++;
                     if (hovered) {
-                        index = projects.indexOf(hovered);
+                        index = list.indexOf(hovered);
                         hovered = undefined;
-                    } else if (index >= projects.length) {
+                    } else if (index >= list.length) {
                         index = 0;
                     }
-                    el.src = projects[index];
+                    el.src = list[index];
                     clearInterval(fading_out_timer);
                     setTimeout(() => {
                         fade_in(el);
@@ -164,10 +113,5 @@
                 el.style.opacity = String(Number(el.style.opacity) - spd);
             }, 10);
         }
-
-        // Smooth scroll for the scroll hint
-        document.querySelector(".scroll-hint").addEventListener("click", () => {
-            document.querySelector(".projects").scrollIntoView({ behavior: "smooth" });
-        });
     </script>
 </html>
