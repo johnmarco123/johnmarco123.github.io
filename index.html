@@ -1,117 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>John-Marco | Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <div class="brand">
-                <span class="brand-name">John-Marco</span>
-                <span class="brand-dot"></span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="John-Marco Tasillo — Developer & Creative Coder. Building interactive experiences, games, and polished web apps.">
+    <title>John-Marco | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <header class="navbar" id="navbar">
+        <a class="nav-logo" href="#home">JM</a>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a class="nav-github" href="https://github.com/johnmarco123" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            GitHub
+        </a>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Available for opportunities
             </div>
-            <nav>
-                <a id="p5Projects" href="p5Projects" class="active">p5.js Projects</a>
-                <a id="VeterinaryAdventures" href="VeterinaryAdventures">Vet Game</a>
-                <a id="Philosophy-website" href="Philosophy-website">Philosophy</a>
-                <a id="drawing_app" href="drawing_app">Drawing App</a>
-                <a id="snooker" href="snooker">Snooker</a>
-            </nav>
-        </header>
-        <main>
-            <div class="showcase-bar">
-                <span id="current-project">p5Projects</span>
-                <a id="visit-btn" href="p5Projects" target="_blank" rel="noopener" class="visit-btn">
-                    Visit Website
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+
+            <h1 class="hero-name">
+                John&#8209;Marco<br>
+                <span class="hero-name-dim">Tasillo</span>
+            </h1>
+
+            <p class="hero-sub">
+                <span class="type-text"></span><span class="type-cursor">|</span>
+            </p>
+
+            <p class="hero-desc">
+                I craft interactive experiences, creative tools, and polished web applications — turning ideas into things people actually enjoy using.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-primary">
+                    View My Work
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/johnmarco123" target="_blank" rel="noopener" class="btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section class="about-section" id="about">
+        <div class="section-inner">
+            <p class="section-label">// 01 — About</p>
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <h2 class="section-heading">Developer &amp;<br>Creative Coder</h2>
+                    <p>I build things on the web — from physics simulations and browser games to polished interactive experiences. I love finding the intersection of code and creativity, using tools like p5.js to push what's possible in a browser.</p>
+                    <p>Whether it's a smooth UI, a generative art piece, or a game with real-time physics, I care deeply about the craft and the feel of what I make.</p>
+                </div>
+                <div class="about-skills fade-in" style="--delay: 0.1s">
+                    <div class="skill-group">
+                        <span class="skill-group-label">Languages</span>
+                        <div class="skill-pills">
+                            <span class="pill">JavaScript</span>
+                            <span class="pill">HTML</span>
+                            <span class="pill">CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-group-label">Libraries &amp; Tools</span>
+                        <div class="skill-pills">
+                            <span class="pill">p5.js</span>
+                            <span class="pill">Canvas API</span>
+                            <span class="pill">Git</span>
+                            <span class="pill">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-group-label">Focus Areas</span>
+                        <div class="skill-pills">
+                            <span class="pill">Creative Coding</span>
+                            <span class="pill">Game Dev</span>
+                            <span class="pill">UI / UX</span>
+                            <span class="pill">Simulations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="projects-section" id="projects">
+        <div class="section-inner">
+            <p class="section-label">// 02 — Projects</p>
+
+            <div class="projects-top fade-in">
+                <nav class="proj-nav" aria-label="Project switcher">
+                    <a id="p5Projects"           href="p5Projects"           class="proj-tab active">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        p5.js Projects
+                    </a>
+                    <a id="VeterinaryAdventures"  href="VeterinaryAdventures"  class="proj-tab">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        Vet Game
+                    </a>
+                    <a id="Philosophy-website"   href="Philosophy-website"   class="proj-tab">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        Philosophy
+                    </a>
+                    <a id="drawing_app"           href="drawing_app"           class="proj-tab">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                        Drawing App
+                    </a>
+                    <a id="snooker"               href="snooker"               class="proj-tab">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                        Snooker
+                    </a>
+                </nav>
+                <a id="visit-btn" href="p5Projects" target="_blank" rel="noopener" class="visit-link">
+                    Open in new tab
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                         <polyline points="15 3 21 3 21 9"/>
                         <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
                 </a>
             </div>
-            <div id="show-case">
-                <iframe src="p5Projects" title="My projects" id="frame"></iframe>
+
+            <div class="frame-wrap fade-in" style="--delay: 0.15s">
+                <div class="frame-chrome">
+                    <div class="chrome-dots" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="chrome-url">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span id="current-project">johnmarco123.github.io/p5Projects</span>
+                    </div>
+                </div>
+                <div id="show-case">
+                    <iframe src="p5Projects" title="Project showcase" id="frame" loading="lazy"></iframe>
+                </div>
             </div>
-        </main>
-    </body>
-    <script>
-        const aTags = document.querySelectorAll("nav a");
-        const list = [];
-        aTags.forEach(tag => list.push(tag.id));
+        </div>
+    </section>
 
-        const frame = document.getElementById("frame");
-        const visitBtn = document.getElementById("visit-btn");
-        const currentProject = document.getElementById("current-project");
+    <!-- ── CONTACT ── -->
+    <section class="contact-section" id="contact">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <div class="section-inner contact-inner fade-in">
+            <p class="section-label" style="text-align:center">// 03 — Contact</p>
+            <h2 class="section-heading contact-heading">Let's work<br>together.</h2>
+            <p class="contact-sub">Open to internships, collaborations, and interesting projects. Drop me a message anytime.</p>
+            <a href="mailto:johnmarcotasillo@gmail.com" class="btn-primary contact-btn">
+                Say Hello
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </a>
+        </div>
+    </section>
 
-        frame.style.opacity = 1;
-        let hovered = undefined;
-        let index = 0;
-        let fading_in_timer, fading_out_timer;
-        const fade_time = 800;
-        let swapping = false;
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <span>John-Marco Tasillo &copy; 2025</span>
+        <div class="footer-links">
+            <a href="https://github.com/johnmarco123" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:johnmarcotasillo@gmail.com">Email</a>
+        </div>
+    </footer>
 
-        function setActive(id) {
-            aTags.forEach(a => a.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
-            visitBtn.href = id;
-            currentProject.textContent = id;
+<script>
+// ── Typewriter ──
+const phrases = ['Creative Developer.', 'p5.js Enthusiast.', 'Game Builder.', 'UI Craftsman.'];
+let pi = 0, ci = 0, deleting = false;
+const typeEl = document.querySelector('.type-text');
+function type() {
+    const phrase = phrases[pi];
+    typeEl.textContent = phrase.slice(0, ci);
+    if (!deleting) {
+        if (ci < phrase.length) { ci++; setTimeout(type, 70); }
+        else { deleting = true; setTimeout(type, 1800); }
+    } else {
+        if (ci > 0) { ci--; setTimeout(type, 38); }
+        else { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 350); }
+    }
+}
+setTimeout(type, 1000);
+
+// ── Navbar scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Scroll-triggered fade-ins ──
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const delay = e.target.style.getPropertyValue('--delay') || '0s';
+            e.target.style.transitionDelay = delay;
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
         }
+    });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        for (let item of list) {
-            document.getElementById(item).addEventListener("click", (e) => {
-                e.preventDefault();
-                hovered = item;
-                if (frame.src.split("/").pop() != item && !swapping) {
-                    swapping = true;
-                    setActive(item);
-                    swap(item);
-                }
-            });
-        }
+// ── Project tabs ──
+const projects = ['p5Projects', 'VeterinaryAdventures', 'Philosophy-website', 'drawing_app', 'snooker'];
+const tabs     = document.querySelectorAll('.proj-tab');
+const frame    = document.getElementById('frame');
+const visitBtn = document.getElementById('visit-btn');
+const urlLabel = document.getElementById('current-project');
 
-        function swap(item) {
-            clearInterval(fading_out_timer);
-            clearInterval(fading_in_timer);
-            fade_out(frame);
-        }
+frame.style.opacity = '1';
+let hovered, index = 0, swapping = false;
+let timerOut, timerIn;
+const FADE = 500;
 
-        function fade_in(el) {
-            const spd = 10 / fade_time;
-            fading_in_timer = setInterval(() => {
-                if (el.style.opacity >= 1) {
-                    swapping = false;
-                    clearInterval(fading_in_timer);
-                }
-                el.style.opacity = String(Number(el.style.opacity) + spd);
-            }, 10);
-        }
+function setActive(id) {
+    tabs.forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    visitBtn.href = id;
+    urlLabel.textContent = 'johnmarco123.github.io/' + id;
+}
 
-        function fade_out(el) {
-            const spd = 10 / fade_time;
-            fading_out_timer = setInterval(() => {
-                if (el.style.opacity <= 0) {
-                    index++;
-                    if (hovered) {
-                        index = list.indexOf(hovered);
-                        hovered = undefined;
-                    } else if (index >= list.length) {
-                        index = 0;
-                    }
-                    el.src = list[index];
-                    clearInterval(fading_out_timer);
-                    setTimeout(() => {
-                        fade_in(el);
-                    }, 300);
-                }
-                el.style.opacity = String(Number(el.style.opacity) - spd);
-            }, 10);
+tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+        e.preventDefault();
+        const id = tab.id;
+        if (frame.src.split('/').pop() === id || swapping) return;
+        hovered = id;
+        swapping = true;
+        setActive(id);
+        fadeOut();
+    });
+});
+
+function fadeOut() {
+    clearInterval(timerOut); clearInterval(timerIn);
+    const spd = 10 / FADE;
+    timerOut = setInterval(() => {
+        const v = parseFloat(frame.style.opacity) - spd;
+        if (v <= 0) {
+            frame.style.opacity = '0';
+            clearInterval(timerOut);
+            index = hovered ? projects.indexOf(hovered) : (index + 1) % projects.length;
+            hovered = undefined;
+            frame.src = projects[index];
+            setTimeout(fadeIn, 250);
+        } else {
+            frame.style.opacity = String(v);
         }
-    </script>
+    }, 10);
+}
+
+function fadeIn() {
+    const spd = 10 / FADE;
+    timerIn = setInterval(() => {
+        const v = parseFloat(frame.style.opacity) + spd;
+        if (v >= 1) { frame.style.opacity = '1'; swapping = false; clearInterval(timerIn); }
+        else { frame.style.opacity = String(v); }
+    }, 10);
+}
+</script>
+</body>
 </html>
