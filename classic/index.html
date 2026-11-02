@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="John-Marco Tasillo — Developer and creative coder building interactive experiences, games, and web tools. Available for work.">
+    <title>John-Marco Tasillo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAV -->
+    <header class="nav" id="nav">
+        <a class="nav-brand" href="#home">JM</a>
+        <nav class="nav-items" aria-label="Site navigation">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#security">Security</a>
+            <a href="#contact">Contact</a>
+            <a href="/" class="nav-ext">3D workshop</a>
+            <a href="https://github.com/johnmarco123" target="_blank" rel="noopener" class="nav-ext">
+                GitHub
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="wrap">
+            <p class="availability">Available for work</p>
+            <p class="hero-kicker">Developer · Creative Coder</p>
+            <h1 class="hero-name">
+                <span>John-Marco</span>
+                <span class="dim">Tasillo</span>
+            </h1>
+            <div class="hero-foot">
+                <p class="hero-desc">I build interactive experiences — games, simulations, and web tools that feel genuinely alive.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-solid">View work</a>
+                    <a href="https://github.com/johnmarco123" target="_blank" rel="noopener" class="btn-ghost">GitHub ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="wrap">
+            <div class="row" data-reveal>
+                <span class="tag">About</span>
+                <div class="col">
+                    <p class="statement">I'm a developer who cares about the feel of things. My work spans creative coding, game development, and frontend — with a focus on making software that's genuinely enjoyable to interact with.</p>
+                    <p class="body-text">I work mainly in JavaScript, reaching for tools like p5.js and the Canvas API to push what the browser can do. I like projects that sit at the intersection of code and craft.</p>
+                    <ul class="skills" aria-label="Skills">
+                        <li>JavaScript</li>
+                        <li>HTML &amp; CSS</li>
+                        <li>p5.js</li>
+                        <li>Canvas API</li>
+                        <li>Game Dev</li>
+                        <li>Node.js</li>
+                        <li>Creative Coding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+        <div class="wrap">
+            <div class="row" data-reveal>
+                <span class="tag">Projects</span>
+                <div class="col">
+                    <div class="proj-bar">
+                        <nav class="proj-tabs" aria-label="Project switcher">
+                            <button id="p5Projects"           class="tab active">p5.js</button>
+                            <button id="VeterinaryAdventures" class="tab">Vet Game</button>
+                            <button id="Philosophy-website"   class="tab">Philosophy</button>
+                            <button id="drawing_app"          class="tab">Drawing App</button>
+                            <button id="snooker"              class="tab">Snooker</button>
+                        </nav>
+                        <a id="visit-btn" href="/p5Projects/" target="_blank" rel="noopener" class="proj-open">Open ↗</a>
+                    </div>
+                    <div class="proj-frame">
+                        <iframe src="/p5Projects/" id="frame" title="Project preview" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="section" id="security">
+        <div class="wrap">
+            <div class="row" data-reveal>
+                <span class="tag">Security</span>
+                <div class="col">
+                    <p class="statement">I'm moving into web application security — currently working through the PortSwigger Web Security Academy and publishing a note on every vulnerability class as I go.</p>
+                    <p class="body-text">Each note covers the same four things: what the bug is, why it keeps surviving code review, how you'd spot it in a live application, and how to fix it properly. That last part is where writing software for years actually pays off — most people learning to break things can't tell you how to build them correctly.</p>
+                    <ul class="skills" aria-label="Security focus">
+                        <li>Burp Suite</li>
+                        <li>OWASP Top 10</li>
+                        <li>Access Control</li>
+                        <li>Injection</li>
+                        <li>Auth &amp; Session</li>
+                        <li>Working toward BSCP</li>
+                    </ul>
+                    <a href="https://johnmarco123.github.io/web-security-notes/" class="contact-link" target="_blank" rel="noopener">
+                        Read the notes
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+        <div class="wrap">
+            <div class="row" data-reveal>
+                <span class="tag">Contact</span>
+                <div class="col">
+                    <h2 class="contact-headline">Available for<br>work, now.</h2>
+                    <p class="body-text">I'm actively looking for my next role — full-time, contract, or internship. Frontend, full-stack, or application security. If you're hiring, or you know someone who is, I'd genuinely like to hear from you.</p>
+                    <a href="mailto:johnmarcotasillo@gmail.com" class="contact-link">
+                        johnmarcotasillo@gmail.com
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <span>John-Marco Tasillo</span>
+            <span>&copy; 2025</span>
+        </div>
+    </footer>
+
+<script>
+// Navbar on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav--up', window.scrollY > 50);
+}, { passive: true });
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+// Project switcher
+const projects = ['p5Projects','VeterinaryAdventures','Philosophy-website','drawing_app','snooker'];
+const tabs     = document.querySelectorAll('.tab');
+const frame    = document.getElementById('frame');
+const visitBtn = document.getElementById('visit-btn');
+
+frame.style.opacity = '1';
+let current = 'p5Projects', swapping = false;
+let tOut, tIn;
+const DUR = 350;
+
+function activate(id) {
+    tabs.forEach(t => t.classList.toggle('active', t.id === id));
+    visitBtn.href = `/${id}/`; // absolute: this page lives in /classic/
+    current = id;
+}
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        if (tab.id === current || swapping) return;
+        swapping = true;
+        activate(tab.id);
+        fadeOut(tab.id);
+    });
+});
+
+function fadeOut(id) {
+    clearInterval(tOut); clearInterval(tIn);
+    const step = 10 / DUR;
+    tOut = setInterval(() => {
+        const v = parseFloat(frame.style.opacity) - step;
+        if (v <= 0) {
+            frame.style.opacity = '0';
+            clearInterval(tOut);
+            frame.src = `/${id}/`;
+            setTimeout(fadeIn, 180);
+        } else frame.style.opacity = String(v);
+    }, 10);
+}
+
+function fadeIn() {
+    const step = 10 / DUR;
+    tIn = setInterval(() => {
+        const v = parseFloat(frame.style.opacity) + step;
+        if (v >= 1) { frame.style.opacity = '1'; swapping = false; clearInterval(tIn); }
+        else frame.style.opacity = String(v);
+    }, 10);
+}
+</script>
+
+</body>
+</html>
