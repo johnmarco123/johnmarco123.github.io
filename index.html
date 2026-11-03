@@ -4,19 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-        // Phones get the classic site: it's fast and readable, and the 3D room is heavy
-        // on a small screen and battery. This runs before anything else loads, so phones
-        // never download the 3D bundle. Add ?3d to the URL to try the room anyway.
+        // Phones get the lite workshop: the same room at low quality, no free walking, just a
+        // swipeable tour of each stop. ?lite forces it anywhere, ?3d forces the full room.
         (function () {
-            var CLASSIC = 'https://johnmarco123.github.io/classic/';
-            var optIn = /[?&]3d\b/.test(location.search);
-            try {
-                if (optIn) sessionStorage.setItem('force3d', '1');
-                optIn = optIn || sessionStorage.getItem('force3d') === '1';
-            } catch (e) { /* storage blocked: the query string still works */ }
+            var q = location.search;
             var phoneUA = /iPhone|iPod|Android.+Mobile|Windows Phone|Mobile.+Firefox/i.test(navigator.userAgent);
             var smallTouch = matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 600;
-            if (!optIn && (phoneUA || smallTouch)) location.replace(CLASSIC);
+            window.WORKSHOP_LITE = /[?&]lite\b/.test(q) || (!/[?&]3d\b/.test(q) && (phoneUA || smallTouch));
+            if (window.WORKSHOP_LITE) document.documentElement.classList.add('lite');
         })();
     </script>
     <meta name="description" content="John-Marco Tasillo: developer and creative coder. Explore the workshop, play the projects, break into the server room.">
@@ -25,8 +20,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Pacifico&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-PIalO-6k.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-avHghWFN.css">
+  <script type="module" crossorigin src="./assets/index-Dydrag05.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three.module-rvKmEG1Z.js">
+  <link rel="modulepreload" crossorigin href="./assets/Pass-DVdh_KW8.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-DyVSihdh.css">
 </head>
 <body>
     <!--
@@ -42,7 +39,11 @@
             <p class="intro-kicker">Developer · Creative Coder · AppSec</p>
             <h1>John-Marco<br><span>Tasillo</span></h1>
             <p class="intro-desc">This is my workshop. Walk around, check out my character sheet, play my projects in the arcade, and see if you can break into the server room.</p>
-            <button id="enterBtn" class="btn-insert"><span class="coin">🪙</span> Insert coin to enter</button>
+            <div class="intro-choices">
+                <button id="tourBtn" class="btn-tour"><span>💼</span><b>Recruiter? Take the 60-second tour</b><small>skills, projects and how to reach me, hands-free</small></button>
+                <button id="enterBtn" class="btn-insert"><span class="coin">🪙</span> Explore the workshop</button>
+            </div>
+            <div class="intro-loading"><i></i><span>loading the workshop…</span></div>
             <p class="intro-alt">In a hurry? <a href="https://johnmarco123.github.io/classic/">View the classic site</a> · or email <a href="mailto:johnmarcotasillo@gmail.com">johnmarcotasillo@gmail.com</a></p>
         </div>
     </div>
@@ -58,10 +59,15 @@
             <div class="hud-links">
                 <button id="btnTrophies" class="hud-btn" title="Achievements">🏆 <span id="trophyCount">0/0</span></button>
                 <button id="btnTerm" class="hud-btn" title="Terminal (~)">&gt;_ <span class="lbl">Terminal</span></button>
-                <button id="btnHelp" class="hud-btn" title="Controls (?)">? <span class="lbl">Controls</span></button>
-                <button id="btnQuality" class="hud-btn" title="Graphics quality: click to change">⚙ <span class="lbl" id="qualityLbl">High</span></button>
                 <button id="btnSound" class="hud-btn" title="Sound off: click to turn on">🔇</button>
-                <button id="btnReset" class="hud-btn" title="Reset…">↺ <span class="lbl">Reset</span></button>
+                <button id="btnMenu" class="hud-btn" title="Menu">☰ <span class="lbl">Menu</span></button>
+                <div id="menu" class="reset-menu hud-menu" hidden>
+                    <button id="btnTour"><b>💼 Recruiter tour</b><span>60 seconds, hands-free</span></button>
+                    <button id="btnHelp"><b>? Controls</b><span>how to get around</span></button>
+                    <button id="btnQuality"><b>⚙ Graphics: <span id="qualityLbl">High</span></b><span>click to change</span></button>
+                    <button id="btnReset"><b>↺ Reset…</b><span>room.lua, the room, or everything</span></button>
+                    <a href="https://johnmarco123.github.io/classic/"><b>Classic site ↗</b><span>the plain, fast version</span></a>
+                </div>
                 <div id="resetMenu" class="reset-menu" hidden>
                     <p class="rm-title">Reset what?</p>
                     <button data-reset="lua"><b>room.lua</b><span>just your edits on the computer</span></button>
@@ -69,7 +75,6 @@
                     <button data-reset="all" class="rm-danger"><b>Everything</b><span>achievements, flags, drawings, settings: a fresh start</span></button>
                     <div class="rm-confirm"><p>Wipe it all? This can't be undone.</p><button data-reset="all-yes" class="rm-yes">Yes, wipe everything</button><button data-reset="all-no">Cancel</button></div>
                 </div>
-                <a class="hud-btn classic" href="https://johnmarco123.github.io/classic/" title="The plain, fast version">Classic ↗</a>
             </div>
         </div>
         <button id="prompt" class="prompt" hidden></button>
@@ -84,6 +89,18 @@
             <div class="sn-power"><i></i></div>
             <p class="sn-help"><span class="sn-stats"></span> · aim with the mouse · hold to power up, release to strike · <kbd>R</kbd> re-rack <button class="sn-rack">↺</button> · <kbd>Esc</kbd> leave</p>
         </div>
+        <div id="tour" class="tour" hidden>
+            <p class="tour-step"></p>
+            <h3 class="tour-title"></h3>
+            <p class="tour-text"></p>
+            <div class="tour-nav">
+                <button class="tour-prev" aria-label="Previous">←</button>
+                <span class="tour-dots"></span>
+                <button class="tour-open" hidden>Open</button>
+                <button class="tour-next">Next →</button>
+                <button class="tour-exit">Exit tour</button>
+            </div>
+        </div>
         <div id="nowPlaying" class="now-playing" hidden><span class="np-note">♪</span> <b></b> <span class="np-by">· HoliznaCC0</span> <button title="Next track">⏭</button></div>
     </div>
 
@@ -92,18 +109,12 @@
             <p class="panel-kicker">How to play</p>
             <h2>Welcome to the workshop</h2>
             <ul class="howto-grid">
-                <li><span class="k"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>Walk around <small>(<kbd>Shift</kbd> runs, arrows turn)</small></span></li>
+                <li><span class="k"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / click floor</span><span>Walk around</span></li>
                 <li><span class="k">🖱️ drag</span><span>Look around</span></li>
-                <li><span class="k">👆 click floor</span><span>Walk there</span></li>
-                <li><span class="k">✨ click / <kbd>E</kbd></span><span>Inspect anything that glows when you hover</span></li>
-                <li><span class="k"><kbd>1</kbd>–<kbd>5</kbd></span><span>Jump to an arcade cabinet</span></li>
-                <li><span class="k"><kbd>~</kbd></span><span>Terminal (or the <b>&gt;_ Terminal</b> button, top right)</span></li>
-                <li><span class="k"><kbd>Esc</kbd></span><span>Step back from whatever you're looking at</span></li>
-                <li><span class="k"><kbd>?</kbd></span><span>Show this card again</span></li>
-                <li><span class="k">⚙</span><span>Graphics quality (it lowers itself if things stutter)</span></li>
-                <li><span class="k">↺</span><span>Reset room.lua, the room, or everything</span></li>
+                <li><span class="k">✨ click / <kbd>E</kbd></span><span>Use anything that glows when you hover</span></li>
+                <li><span class="k"><kbd>~</kbd></span><span>Terminal. Try <b>help</b></span></li>
             </ul>
-            <p class="howto-goal">🎯 Side quest: get into the <b style="color:#ff6b6b">server room</b>. Feeling brave? Type <b>vim</b> in the terminal and try to get out.</p>
+            <p class="howto-goal">Everything else is for you to find. 🎯 Start with the <b style="color:#ff6b6b">server room</b>.</p>
             <button class="btn-solid">Got it, let me play</button>
         </div>
     </div>
