@@ -20,10 +20,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Pacifico&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-8pJVjK1Z.js"></script>
+  <script type="module" crossorigin src="./assets/index-D7otOTKL.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/three.module-rvKmEG1Z.js">
   <link rel="modulepreload" crossorigin href="./assets/Pass-DVdh_KW8.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-BNxE90nI.css">
+  <link rel="stylesheet" crossorigin href="./assets/index-Ci1rinZO.css">
 </head>
 <body>
     <!--
@@ -57,6 +57,7 @@
                 <div class="xp-bar"><i id="xpFill"></i></div>
             </div>
             <div class="hud-links">
+                <button id="btnContact" class="hud-btn hud-contact" title="How to reach me">✉ <span class="lbl">Contact</span></button>
                 <button id="btnTrophies" class="hud-btn" title="Achievements">🏆 <span id="trophyCount">0/0</span></button>
                 <button id="btnTerm" class="hud-btn" title="Terminal (~)">&gt;_ <span class="lbl">Terminal</span></button>
                 <button id="btnSound" class="hud-btn" title="Sound off: click to turn on">🔇</button>
@@ -103,6 +104,21 @@
             </div>
         </div>
         <div id="nowPlaying" class="now-playing" hidden><span class="np-note">♪</span> <b></b> <span class="np-by">· HoliznaCC0</span> <button title="Next track">⏭</button></div>
+    </div>
+
+    <!-- the end of the tour: how to reach me, impossible to miss -->
+    <div id="reachMe" class="reach" hidden>
+        <div class="reach-card">
+            <p class="panel-kicker">thanks for taking the tour</p>
+            <h2>Let's talk.</h2>
+            <p class="reach-lead"></p>
+            <a class="reach-email" href="#"></a>
+            <div class="reach-actions">
+                <button class="btn-solid" id="reachCopy">Copy email</button>
+                <a class="btn-ghost" id="reachGithub" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+            <button class="reach-explore">Keep exploring the workshop →</button>
+        </div>
     </div>
 
     <div id="howto" hidden>
